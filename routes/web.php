@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $currentPlayer = 'Red';
+    $board = [];
+    $rows = 6;
+    $columns = 7;
+    for ($r = 0; $r < $rows; $r++) {
+      for ($c = 0; $c < $columns; $c++) {
+        $board[$r][$c] = 'red';
+      }
+    }
+    return view('board', compact('currentPlayer', 'board', 'rows', 'columns'));
 });

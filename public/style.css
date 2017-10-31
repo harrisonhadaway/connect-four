@@ -1,0 +1,32 @@
+.spot {
+  border: 5px solid #EFDC05;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding-top: 20px;
+  color: #fff;
+}
+
+.board {
+  /*width: 535px;*/
+  border: 5px solid #EFDC05;
+  display: inline-block;
+  background-color: #EFDC05;
+}
+
+.row {
+  margin: 0px;
+}
+
+.red {
+  background-color: #E53A40;
+}
+
+.blue {
+  background-color: #30A9DE;
+}
+
+.drop {
+  width: 75px;
+}
