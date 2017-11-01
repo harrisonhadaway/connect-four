@@ -12,25 +12,8 @@
 */
 
 Route::get('/', function () {
-
-  // TODO: fix this mess, it's broken
-  $players = ['Red', 'Blue'];
-  $rows = 6;
-  $columns = 7;
-  $turn = 5;
-  $currentPlayer = $players[$turn % 2];
-  $board = [];
-  for ($r = 0; $r < $rows; $r++) {
-    for ($c = 0; $c < $columns; $c++) {
-      $board[$r][$c] = '';
-    }
-  }
-
-  return view('board', compact('currentPlayer', 'turn', 'board', 'rows', 'columns'));
-
-})->name('board');
-
-
+  return redirect()->route('restart');
+});
 
 
 
@@ -39,10 +22,14 @@ Route::get('game/{id}/drop/{column}', function($id, $column) {
 
   // Get the current game
   $game = \App\Game::find($id);
+  $board = json_decode($game->board);
+
 
 
   // Put checker in column
+  // TODO: defaulting to row 0 - this needs to be fixed
 
+  $board[0][$column] = $game->players[$game->turn % 2];
 
 
   // Did anyone win?
@@ -51,6 +38,9 @@ Route::get('game/{id}/drop/{column}', function($id, $column) {
 
   // Increment turn counter
   $game->turn++;
+  $game->board = json_encode($board);
+  
+  // Save the game state
   $game->save();
 
   // Show the board
@@ -72,18 +62,14 @@ Route::get('game/{id}', function($id) {
   $turn = $game->turn;
   $rows = $game->rows;
   $columns = $game->columns;
+  $board = json_decode($game->board);
 
   $currentPlayer = $game->players[$turn % 2];
-  $board = [];
-  for ($r = 0; $r < $rows; $r++) {
-    for ($c = 0; $c < $columns; $c++) {
-      $board[$r][$c] = '';
-    }
-  }
-
+  
   return view('board', compact('game_id', 'currentPlayer', 'turn', 'board', 'rows', 'columns'));
 
 })->name('game');
+
 
 
 
@@ -97,11 +83,19 @@ Route::get('/restart', function() {
   // Make a new game
   $game = new \App\Game;
   $game->turn = 1;
+  $board = [];
+  for ($r = 0; $r < $game->rows; $r++) {
+    for ($c = 0; $c < $game->columns; $c++) {
+      $board[$r][$c] = '';
+    }
+  }
+  $game->board = json_encode($board);
   $game->save();
 
+  // What's my id?
   $id = $game->id;
 
   // Show the board
   return redirect()->route('game', ['id' => $id]);
 
-});
+})->name('restart');
