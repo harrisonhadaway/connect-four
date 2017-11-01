@@ -31,11 +31,37 @@ Route::get('/', function () {
 })->name('board');
 
 
+
+
+
+
 Route::get('game/{id}/drop/{column}', function($id, $column) {
 
-  return "Dropped a checker in column " . $column . " for game " . $id;
+  // Get the current game
+  $game = \App\Game::find($id);
+
+
+  // Put checker in column
+
+
+
+  // Did anyone win?
+
+
+
+  // Increment turn counter
+  $game->turn++;
+  $game->save();
+
+  // Show the board
+  return redirect()->route('game', ['id' => $id]);
 
 });
+
+
+
+
+
 
 
 Route::get('game/{id}', function($id) {
