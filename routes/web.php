@@ -60,9 +60,11 @@ Route::get('/restart', function() {
 
   // TODO: End the old game
   // ??? set in_progress to false ???
+  // Not safe to do until we have user logins!!!
 
   // Make a new game
   $game = new \App\Game;
+  $game->turn = 1;
   $game->save();
 
   $id = $game->id;
