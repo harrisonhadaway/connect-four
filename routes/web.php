@@ -24,24 +24,28 @@ Route::get('game/{id}/drop/{column}', function($id, $column) {
   $game = \App\Game::find($id);
   $board = json_decode($game->board);
 
-
-
   // Put checker in column
-  // TODO: defaulting to row 0 - this needs to be fixed
+  $placed_checker = false;
+  for ($i = 0; $i < $game->rows; $i++) {
+    if ($board[$i][$column] === '') {
+      $board[$i][$column] = $game->players[$game->turn % 2];
+      $placed_checker = true;
+      break;
+    }
+  }
+  if ($placed_checker) {
 
-  $board[0][$column] = $game->players[$game->turn % 2];
+    // Did anyone win?
 
 
-  // Did anyone win?
+    // Increment turn counter
+    $game->turn++;
+    $game->board = json_encode($board);
+    
+    // Save the game state
+    $game->save();
 
-
-
-  // Increment turn counter
-  $game->turn++;
-  $game->board = json_encode($board);
-  
-  // Save the game state
-  $game->save();
+  }
 
   // Show the board
   return redirect()->route('game', ['id' => $id]);
