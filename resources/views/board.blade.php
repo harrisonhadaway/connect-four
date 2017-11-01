@@ -11,13 +11,55 @@
 <h1 class="mt-5">Laravel Connect Four</h1>
 
 <div class="row justify-content-center mt-5">
-  <div class="drop"><button class="btn btn-light"><i class="fa fa-arrow-down" aria-hidden="true"></i></button></div>
-  <div class="drop"><button class="btn btn-light"><i class="fa fa-arrow-down" aria-hidden="true"></i></button></div>
-  <div class="drop"><button class="btn btn-light"><i class="fa fa-arrow-down" aria-hidden="true"></i></button></div>
-  <div class="drop"><button class="btn btn-light"><i class="fa fa-arrow-down" aria-hidden="true"></i></button></div>
-  <div class="drop"><button class="btn btn-light"><i class="fa fa-arrow-down" aria-hidden="true"></i></button></div>
-  <div class="drop"><button class="btn btn-light"><i class="fa fa-arrow-down" aria-hidden="true"></i></button></div>
-  <div class="drop"><button class="btn btn-light"><i class="fa fa-arrow-down" aria-hidden="true"></i></button></div>
+  <div class="drop">
+    <form method="get" action="/game/{{ $game_id }}/drop/0">
+      <button class="btn btn-light">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div class="drop">
+    <form method="get" action="/game/{{ $game_id }}/drop/1">
+      <button class="btn btn-light">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div class="drop">
+    <form method="get" action="/game/{{ $game_id }}/drop/2">
+      <button class="btn btn-light">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div class="drop">
+    <form method="get" action="/game/{{ $game_id }}/drop/3">
+      <button class="btn btn-light">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div class="drop">
+    <form method="get" action="/game/{{ $game_id }}/drop/4">
+      <button class="btn btn-light">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div class="drop">
+    <form method="get" action="/game/{{ $game_id }}/drop/5">
+      <button class="btn btn-light">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div class="drop">
+    <form method="get" action="/game/{{ $game_id }}/drop/6">
+      <button class="btn btn-light">
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
 </div>
 
 <div class="mt-2 mb-3 board">

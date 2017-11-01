@@ -31,12 +31,18 @@ Route::get('/', function () {
 })->name('board');
 
 
+Route::get('game/{id}/drop/{column}', function($id, $column) {
+
+  return "Dropped a checker in column " . $column . " for game " . $id;
+
+});
 
 
 Route::get('game/{id}', function($id) {
 
   $game = \App\Game::find($id);
 
+  $game_id = $id;
   $turn = $game->turn;
   $rows = $game->rows;
   $columns = $game->columns;
@@ -49,7 +55,7 @@ Route::get('game/{id}', function($id) {
     }
   }
 
-  return view('board', compact('currentPlayer', 'turn', 'board', 'rows', 'columns'));
+  return view('board', compact('game_id', 'currentPlayer', 'turn', 'board', 'rows', 'columns'));
 
 })->name('game');
 
