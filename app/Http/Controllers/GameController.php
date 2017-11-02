@@ -30,8 +30,26 @@ class GameController extends Controller
     }
     if ($placed_checker) {
 
-      // TODO: Did anyone win?
+      // Did anyone win?
+      $isWon = $this->checkBoard($board);
+      if ($isWon) {
 
+        // game is over
+
+
+        // display a message
+
+
+        // mark game as no longer in progress
+        $game->in_progress = false;
+
+
+      }
+      else {
+
+        // continue
+
+      }
 
       // Increment turn counter
       $game->turn++;
@@ -47,6 +65,39 @@ class GameController extends Controller
 
   }
 
+  public function checkBoard($board) {
+
+    // $board is a 2-dimensional array
+
+    $wins = [
+      [ [0,0], [0,1], [0,2], [0,3] ],
+      [ [1,0], [1,1], [1,2], [1,3] ]
+    ];
+
+    for ($i = 0; $i < count($wins); $i++) {
+
+      // $wins[$i] = an array of coordinates
+      // error_log("Checking...\$wins[" . $i . "]");
+      // error_log(print_r($wins[$i], true));
+
+      // compareLine(
+      //   $board[ $wins[0][0] ][ $wins[0][1] ], 
+      //   $board[ $wins[1][0] ][ $wins[1][1] ], 
+      //   $board[ $wins[2][0] ][ $wins[2][1] ], 
+      //   $board[ $wins[3][0] ][ $wins[3][1] ]
+      // );
+
+    }
+
+    return false;
+
+  }
+
+  // private function compareLine($a $b, $c, $d) {
+  //   return $a === $b === $c === $d;
+  // }
+
+
   public function game($id) {
 
     $game = \App\Game::find($id);
@@ -56,10 +107,11 @@ class GameController extends Controller
     $rows = $game->rows;
     $columns = $game->columns;
     $board = json_decode($game->board);
+    $in_progress = $game->in_progress;
 
     $currentPlayer = $game->players[$turn % 2];
     
-    return view('board', compact('game_id', 'currentPlayer', 'turn', 'board', 'rows', 'columns'));
+    return view('board', compact('game_id', 'currentPlayer', 'turn', 'board', 'rows', 'columns', 'in_progress'));
 
   }
 

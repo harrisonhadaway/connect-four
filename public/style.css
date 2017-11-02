@@ -31,6 +31,14 @@
   height: 36px;
 }
 
-.fa {
+.RedDrop {
+  color: #E53A40;
+}
+
+.BlueDrop {
+  color: #30A9DE;
+}
+
+.faDisabled {
   color: #999;
 }

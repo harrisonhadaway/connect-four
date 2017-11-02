@@ -12,53 +12,137 @@
 
 <div class="row justify-content-center mt-5">
   <div class="drop">
-    <form method="get" action="/game/{{ $game_id }}/drop/0">
-      <button class="btn btn-light">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    @if ($in_progress)
+
+      <form method="get" action="/game/{{ $game_id }}/drop/0">
+        <button class="btn btn-light">
+          <i class="fa fa-arrow-down {{ $currentPlayer }}Drop" aria-hidden="true"></i>
+        </button>
+      </form>
+
+    @else 
+
+      <button class="btn btn-light disabled">
+        <i class="fa fa-arrow-down faDisabled" aria-hidden="true"></i>
       </button>
-    </form>
+
+    @endif
+
   </div>
   <div class="drop">
-    <form method="get" action="/game/{{ $game_id }}/drop/1">
-      <button class="btn btn-light">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    @if ($in_progress)
+
+      <form method="get" action="/game/{{ $game_id }}/drop/1">
+        <button class="btn btn-light">
+          <i class="fa fa-arrow-down {{ $currentPlayer }}Drop" aria-hidden="true"></i>
+        </button>
+      </form>
+
+    @else 
+
+      <button class="btn btn-light disabled">
+        <i class="fa fa-arrow-down faDisabled" aria-hidden="true"></i>
       </button>
-    </form>
+
+    @endif
+
   </div>
   <div class="drop">
-    <form method="get" action="/game/{{ $game_id }}/drop/2">
-      <button class="btn btn-light">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    @if ($in_progress)
+
+      <form method="get" action="/game/{{ $game_id }}/drop/2">
+        <button class="btn btn-light">
+          <i class="fa fa-arrow-down {{ $currentPlayer }}Drop" aria-hidden="true"></i>
+        </button>
+      </form>
+
+    @else 
+
+      <button class="btn btn-light disabled">
+        <i class="fa fa-arrow-down faDisabled" aria-hidden="true"></i>
       </button>
-    </form>
+
+    @endif
+
   </div>
   <div class="drop">
-    <form method="get" action="/game/{{ $game_id }}/drop/3">
-      <button class="btn btn-light">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    @if ($in_progress)
+
+      <form method="get" action="/game/{{ $game_id }}/drop/3">
+        <button class="btn btn-light">
+          <i class="fa fa-arrow-down {{ $currentPlayer }}Drop" aria-hidden="true"></i>
+        </button>
+      </form>
+
+    @else 
+
+      <button class="btn btn-light disabled">
+        <i class="fa fa-arrow-down faDisabled" aria-hidden="true"></i>
       </button>
-    </form>
+
+    @endif
+
   </div>
   <div class="drop">
-    <form method="get" action="/game/{{ $game_id }}/drop/4">
-      <button class="btn btn-light">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    @if ($in_progress)
+
+      <form method="get" action="/game/{{ $game_id }}/drop/4">
+        <button class="btn btn-light">
+          <i class="fa fa-arrow-down {{ $currentPlayer }}Drop" aria-hidden="true"></i>
+        </button>
+      </form>
+
+    @else 
+
+      <button class="btn btn-light disabled">
+        <i class="fa fa-arrow-down faDisabled" aria-hidden="true"></i>
       </button>
-    </form>
+
+    @endif
+
   </div>
   <div class="drop">
-    <form method="get" action="/game/{{ $game_id }}/drop/5">
-      <button class="btn btn-light">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    @if ($in_progress)
+
+      <form method="get" action="/game/{{ $game_id }}/drop/5">
+        <button class="btn btn-light">
+          <i class="fa fa-arrow-down {{ $currentPlayer }}Drop" aria-hidden="true"></i>
+        </button>
+      </form>
+
+    @else 
+
+      <button class="btn btn-light disabled">
+        <i class="fa fa-arrow-down faDisabled" aria-hidden="true"></i>
       </button>
-    </form>
+
+    @endif
+
   </div>
   <div class="drop">
-    <form method="get" action="/game/{{ $game_id }}/drop/6">
-      <button class="btn btn-light">
-        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    @if ($in_progress)
+
+      <form method="get" action="/game/{{ $game_id }}/drop/6">
+        <button class="btn btn-light">
+          <i class="fa fa-arrow-down {{ $currentPlayer }}Drop" aria-hidden="true"></i>
+        </button>
+      </form>
+
+    @else 
+
+      <button class="btn btn-light disabled">
+        <i class="fa fa-arrow-down faDisabled" aria-hidden="true"></i>
       </button>
-    </form>
+
+    @endif
+
   </div>
 </div>
 
@@ -81,10 +165,6 @@
 </div>
 
 <div class="mt-5 mb-3">
-  Current Player: {{ $currentPlayer }}
-</div>
-
-<div class="mb-3">
   Turn: {{ $turn }}
 </div>
 
