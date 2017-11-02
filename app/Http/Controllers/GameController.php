@@ -34,22 +34,17 @@ class GameController extends Controller
       $isWon = $this->checkBoard($board);
       if ($isWon) {
 
-        // game is over
-
-
-        // display a message
+        // TODO: display a message
 
 
         // mark game as no longer in progress
         $game->in_progress = false;
 
-
       }
-      else {
 
-        // continue
+      // TODO: Is it a draw?
+      // It's a draw if turn = ??? and nobody has won
 
-      }
 
       // Increment turn counter
       $game->turn++;
@@ -67,36 +62,41 @@ class GameController extends Controller
 
   public function checkBoard($board) {
 
-    // $board is a 2-dimensional array
-
+    // $wins is the set of lines on the board that represent wins
     $wins = [
       [ [0,0], [0,1], [0,2], [0,3] ],
       [ [1,0], [1,1], [1,2], [1,3] ]
     ];
 
-    for ($i = 0; $i < count($wins); $i++) {
+    $game_over = false;
+
+    for ($i = 0; $i < count($wins) && !$game_over; $i++) {
 
       // $wins[$i] = an array of coordinates
       // error_log("Checking...\$wins[" . $i . "]");
       // error_log(print_r($wins[$i], true));
 
-      // compareLine(
-      //   $board[ $wins[0][0] ][ $wins[0][1] ], 
-      //   $board[ $wins[1][0] ][ $wins[1][1] ], 
-      //   $board[ $wins[2][0] ][ $wins[2][1] ], 
-      //   $board[ $wins[3][0] ][ $wins[3][1] ]
-      // );
+      $game_over = $this->compareLine(
+        $board[ $wins[$i][0][0] ][ $wins[$i][0][1] ], 
+        $board[ $wins[$i][1][0] ][ $wins[$i][1][1] ], 
+        $board[ $wins[$i][2][0] ][ $wins[$i][2][1] ], 
+        $board[ $wins[$i][3][0] ][ $wins[$i][3][1] ]
+      );
+
+      error_log("Is the game over? $game_over");
 
     }
 
-    return false;
+    return $game_over;
 
   }
 
-  // private function compareLine($a $b, $c, $d) {
-  //   return $a === $b === $c === $d;
-  // }
+  private function compareLine($a, $b, $c, $d) {
 
+    error_log("Checking...$a, $b, $c, $d");
+
+    return $a !== '' && $a === $b && $a === $c && $a === $d;
+  }
 
   public function game($id) {
 
