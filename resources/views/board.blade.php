@@ -10,6 +10,22 @@
 
 <h1 class="mt-5">Laravel Connect Four</h1>
 
+<div class="row justify-content-center">
+  <div class="message alert alert-info mt-5">
+
+    @if ($message !== '') 
+      
+      {{ $message }}
+
+    @else 
+
+      Turn: {{ $turn }}
+
+    @endif
+
+  </div>
+</div>
+
 <div class="row justify-content-center mt-5">
   <div class="drop">
 
@@ -154,7 +170,7 @@
 
   @for ($j = 0; $j < $columns; $j++)
 
-    <div class="spot {{ $board[$i][$j] }}">{{ $i }}, {{ $j }}</div>
+    <div class="spot {{ $board[$i][$j] }}"></div>
 
   @endfor
 
@@ -162,10 +178,6 @@
 
 @endfor  
 
-</div>
-
-<div class="mt-5 mb-3">
-  Turn: {{ $turn }}
 </div>
 
 <div class="mt-5 mb-3">

@@ -8,10 +8,10 @@
 }
 
 .board {
-  /*width: 535px;*/
   border: 5px solid #EFDC05;
   display: inline-block;
   background-color: #EFDC05;
+  border-radius: 5px;
 }
 
 .row {
@@ -41,4 +41,8 @@
 
 .faDisabled {
   color: #999;
+}
+
+.message {
+  width: 535px;
 }

@@ -34,8 +34,8 @@ class GameController extends Controller
       $isWon = $this->checkBoard($board);
       if ($isWon) {
 
-        // TODO: display a message
-
+        // display a message
+        $game->message = $game->players[$game->turn % 2] . " won!";
 
         // mark game as no longer in progress
         $game->in_progress = false;
@@ -43,7 +43,16 @@ class GameController extends Controller
       }
 
       // TODO: Is it a draw?
-      // It's a draw if turn = ??? and nobody has won
+      // It's a draw if turn = 42 and nobody has won
+      if ($game->turn === 42) {
+
+        // display a message
+        $game->message = "It's a draw!";
+
+        // mark game as no longer in progress
+        $game->in_progress = false;
+
+      }
 
 
       // Increment turn counter
@@ -72,18 +81,12 @@ class GameController extends Controller
 
     for ($i = 0; $i < count($wins) && !$game_over; $i++) {
 
-      // $wins[$i] = an array of coordinates
-      // error_log("Checking...\$wins[" . $i . "]");
-      // error_log(print_r($wins[$i], true));
-
       $game_over = $this->compareLine(
         $board[ $wins[$i][0][0] ][ $wins[$i][0][1] ], 
         $board[ $wins[$i][1][0] ][ $wins[$i][1][1] ], 
         $board[ $wins[$i][2][0] ][ $wins[$i][2][1] ], 
         $board[ $wins[$i][3][0] ][ $wins[$i][3][1] ]
       );
-
-      error_log("Is the game over? $game_over");
 
     }
 
@@ -92,9 +95,6 @@ class GameController extends Controller
   }
 
   private function compareLine($a, $b, $c, $d) {
-
-    error_log("Checking...$a, $b, $c, $d");
-
     return $a !== '' && $a === $b && $a === $c && $a === $d;
   }
 
@@ -108,10 +108,11 @@ class GameController extends Controller
     $columns = $game->columns;
     $board = json_decode($game->board);
     $in_progress = $game->in_progress;
+    $message = $game->message;
 
     $currentPlayer = $game->players[$turn % 2];
     
-    return view('board', compact('game_id', 'currentPlayer', 'turn', 'board', 'rows', 'columns', 'in_progress'));
+    return view('board', compact('game_id', 'currentPlayer', 'turn', 'board', 'rows', 'columns', 'in_progress', 'message'));
 
   }
 
